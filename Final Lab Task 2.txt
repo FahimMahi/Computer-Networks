@@ -1,0 +1,68 @@
+Wed Apr 5 02:57:37 2023   Router2   Router>en
+Wed Apr 5 02:57:59 2023   Router2   Router#configure terminal
+Wed Apr 5 02:58:19 2023   Router2   Router(config)#interface GigabitEthernet0/0/0
+Wed Apr 5 02:58:30 2023   Router2   Router(config-if)#ip address 10.10.10.2 255.0.0.0
+Wed Apr 5 02:58:49 2023   Router2   Router(config-if)#ip address 10.10.10.2 255.255.255.0
+Wed Apr 5 02:58:53 2023   Router2   Router(config-if)#no shutdown
+Wed Apr 5 02:58:56 2023   Router2   Router(config-if)#exit
+Wed Apr 5 02:59:03 2023   Router2   Router(config)#interface GigabitEthernet0/0/1
+Wed Apr 5 02:59:08 2023   Router2   Router(config-if)#ip address 172.16.1.250 255.255.0.0
+Wed Apr 5 02:59:15 2023   Router2   Router(config-if)#ip address 172.16.1.250 255.255.255.0
+Wed Apr 5 02:59:20 2023   Router2   Router(config-if)#no shutdown
+Wed Apr 5 02:59:23 2023   Router2   Router(config-if)#exit
+Wed Apr 5 03:01:07 2023   Router2   Router(config)#router ospf 1
+Wed Apr 5 03:01:13 2023   Router2   Router(config-router)#network 172.16.1.0 0.0.0.255 area 0
+Wed Apr 5 03:01:18 2023   Router2   Router(config-router)#network 10.10.20.0 0.0.0.255 area 0
+Wed Apr 5 03:01:24 2023   Router2   Router(config-router)#end
+Wed Apr 5 03:01:31 2023   Router2   Router#configure terminal
+Wed Apr 5 03:01:39 2023   Router2   Router(config)#interface GigabitEthernet0/0/1
+Wed Apr 5 03:01:45 2023   Router2   Router(config-if)#ip address 172.16.1.253 255.255.255.0
+Wed Apr 5 03:01:53 2023   Router2   Router(config-if)#exit
+Wed Apr 5 03:02:00 2023   Router2   Router(config)#interface GigabitEthernet0/0/1
+Wed Apr 5 03:02:05 2023   Router2   Router(config-if)#if)#exit
+Wed Apr 5 03:02:08 2023   Router2   Router(config-if)#exit
+Wed Apr 5 03:02:28 2023   Router2   Router(config)#exit
+Wed Apr 5 03:02:38 2023   Router2   Router#ping 10.10.20.254
+Wed Apr 5 03:04:12 2023   Router1   Router>en
+Wed Apr 5 03:04:25 2023   Router1   Router#configure terminal
+Wed Apr 5 03:04:31 2023   Router1   Router(config)#interface GigabitEthernet0/0/0
+Wed Apr 5 03:04:37 2023   Router1   Router(config-if)#ip address 10.10.10.254 255.0.0.0
+Wed Apr 5 03:04:44 2023   Router1   Router(config-if)#ip address 10.10.10.254 255.255.255.0
+Wed Apr 5 03:04:51 2023   Router1   Router(config-if)#no shutdown
+Wed Apr 5 03:04:54 2023   Router1   Router(config-if)#exit
+Wed Apr 5 03:05:04 2023   Router1   Router(config)#interface GigabitEthernet0/0/1
+Wed Apr 5 03:05:11 2023   Router1   Router(config-if)#ip address 10.10.20.1 255.255.255.0
+Wed Apr 5 03:05:23 2023   Router1   Router(config-if)#ip address 10.10.20.1 255.255.255.0
+Wed Apr 5 03:05:31 2023   Router1   Router(config-if)#no shutdown
+Wed Apr 5 03:05:34 2023   Router1   Router(config-if)#exit
+Wed Apr 5 03:05:52 2023   Router1   Router(config)#router ospf 1
+Wed Apr 5 03:05:59 2023   Router1   Router(config-router)#network 10.10.10.0 0.0.0.255 area 0
+Wed Apr 5 03:06:10 2023   Router1   Router(config-router)#network 10.10.20.0 0.0.0.255 area 0
+Wed Apr 5 03:06:15 2023   Router1   Router(config-router)#exit
+Wed Apr 5 03:06:35 2023   Router1   Router(config)#exit
+Wed Apr 5 03:07:41 2023   Router3   Router>en
+Wed Apr 5 03:07:48 2023   Router3   Router#configure terminal
+Wed Apr 5 03:08:02 2023   Router3   Router(config)#interface GigabitEthernet0/0/0
+Wed Apr 5 03:08:07 2023   Router3   Router(config-if)#ip address 10.10.10.251 255.0.0.0
+Wed Apr 5 03:08:10 2023   Router3   Router(config-if)#exit
+Wed Apr 5 03:08:16 2023   Router3   Router(config)#interface GigabitEthernet0/0/1
+Wed Apr 5 03:08:25 2023   Router3   Router(config-if)#exit
+Wed Apr 5 03:08:32 2023   Router3   Router(config)#interface GigabitEthernet0/0/0
+Wed Apr 5 03:08:43 2023   Router3   Router(config-if)#ip address 10.10.10.251 255.255.255.0
+Wed Apr 5 03:08:46 2023   Router3   Router(config-if)#exit
+Wed Apr 5 03:08:56 2023   Router3   Router(config)#interface GigabitEthernet0/0/1
+Wed Apr 5 03:09:05 2023   Router3   Router(config-if)#ip address 192.168.1.252 255.255.255.0
+Wed Apr 5 03:09:12 2023   Router3   Router(config-if)#no shutdown
+Wed Apr 5 03:09:16 2023   Router3   Router(config-if)#exit
+Wed Apr 5 03:09:33 2023   Router3   Router(config)#interface GigabitEthernet0/0/0
+Wed Apr 5 03:09:36 2023   Router3   Router(config-if)#no shutdown
+Wed Apr 5 03:09:39 2023   Router3   Router(config-if)#exit
+Wed Apr 5 03:11:05 2023   Router3   Router(config)#router ospf 1
+Wed Apr 5 03:11:11 2023   Router3   Router(config-router)#network 172.168.1.0 0.0.0.255 area 0
+Wed Apr 5 03:11:18 2023   Router3   Router(config-router)#network 10.10.10.0 0.0.0.255 area 0
+Wed Apr 5 03:11:22 2023   Router3   Router(config-router)#exit
+Wed Apr 5 03:11:41 2023   Router3   Router(config)#exit
+Wed Apr 5 03:11:48 2023   Router3   Router#ping 10.10.20.254
+Wed Apr 5 03:12:04 2023   Router3   Router#ping 172.16.1.250
+Wed Apr 5 03:12:39 2023   Router3   Router#ping 172.16.1.250
+Wed Apr 5 03:12:58 2023   Router3   Router#ping 10.10.20.254
